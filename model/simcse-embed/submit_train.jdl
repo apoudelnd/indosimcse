@@ -1,0 +1,20 @@
+universe   = vanilla
+executable = train.sh
+arguments = $(PROCESS)
+
+should_transfer_files = IF_NEEDED
+when_to_transfer_output = ON_EXIT
+
+Log    = $(Cluster)_$(PROCESS).log
+Output = $(Cluster)_$(PROCESS).out
+Error  = $(Cluster)_$(PROCESS).err
+
+# Enable Singularity feature
+## Notre Dame Images
++SingularityImage = "/afs/crc.nd.edu/x86_64_linux/s/singularity/images/pytorch-1.9.sif"
+
+request_gpus   = 1
+request_memory = 30 Gb
+request_cpus   = 4
+
+Queue 1
